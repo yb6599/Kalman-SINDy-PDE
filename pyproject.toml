@@ -18,3 +18,6 @@ dependencies = [
 
 [tool.isort]
 profile = "black"
+
+[tool.mitosis.steps]
+pde_grid = ["gen-experiments.gridsearch:run", "ksindy_pde_figs.config:lookup_dict"]
