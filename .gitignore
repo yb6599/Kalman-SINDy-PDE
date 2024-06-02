@@ -1,0 +1,5 @@
+.build
+.env
+.vscode/
+todo
+commit-msg
