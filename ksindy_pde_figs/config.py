@@ -53,6 +53,7 @@ sim_params = {
 }
 diff_params = {
     "test2": ND({"diffcls": "SmoothedFiniteDifference"}),
+    "savgol": ND({"diffcls": "sindy", "kind": "savitzky_golay", "axis": -2}),
 }
 feat_params = {
     "pde2": ND({
@@ -92,6 +93,12 @@ other_params = {
     "test-pde2": ND({
         "sim_params": sim_params["pde-ic2"],
         "diff_params": diff_params["test_axis"],
+        "feat_params": feat_params["pde4"],
+        "opt_params": opt_params["test"],
+    }),
+    "test-pde-sg": ND({
+        "sim_params": sim_params["pde-ic2"],
+        "diff_params": diff_params["savgol"],
         "feat_params": feat_params["pde4"],
         "opt_params": opt_params["test"],
     }),
@@ -180,4 +187,19 @@ series_params: dict[str, SeriesList] = {
 }
 skinny_specs: dict[str, SkinnySpecs] = {
     "duration-noise": (("sim_params.t_end", "sim_params.noise_rel"), ((1,), (-1,))),
+}
+lookup_dict = {
+    "plot_prefs": plot_prefs,
+    "sim_params": sim_params,
+    "diff_params": diff_params,
+    "feat_params": feat_params,
+    "opt_params": opt_params,
+    "metrics": metrics,
+    "other_params": other_params,
+    "grid_params": grid_params,
+    "grid_vals": grid_vals,
+    "grid_decisions": grid_decisions,
+    "diff_series": diff_series,
+    "series_params": series_params,
+    "skinny_specs": skinny_specs
 }
