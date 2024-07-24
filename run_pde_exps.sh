@@ -1,5 +1,4 @@
 nohup mitosis pde_grid \
-    --debug \
     --eval-param pde_grid.seed=19 \
     --eval-param pde_grid.group=\"diffuse1D_periodic\" \
     -F trials \
