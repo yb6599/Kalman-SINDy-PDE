@@ -1,5 +1,8 @@
 .build
 .env
+.log
+.__pycache__/
 .vscode/
+trials/
 todo
 commit-msg
