@@ -52,8 +52,12 @@ sim_params = {
     }),
 }
 diff_params = {
-    "test2": ND({"diffcls": "SmoothedFiniteDifference"}),
-    "savgol": ND({"diffcls": "sindy", "kind": "savitzky_golay", "axis": -2}),
+    "test_axis": ND({"diffcls": "FiniteDifference", "axis":-2}),
+    "sfd-ps": ND({"diffcls": "SmoothedFiniteDifference", "axis":-2}),
+    "savgol": ND({"diffcls": "sindy", "kind": "savitzky_golay", "axis": -2, "left":0.1, "right":0.1, "order":3}),
+    "tv": ND({"diffcls": "sindy", "kind": "trend_filtered", "order": 0, "axis":-2, "alpha": 1}),
+    "kalman": ND({"diffcls": "sindy", "kind": "kalman", "alpha": 0.000055, "axis":-2}),
+    "autoks": ND({"diffcls": "sindy", "kind": "kalman", "alpha": "gcv", "axis":-2}),
 }
 feat_params = {
     "pde2": ND({
@@ -72,6 +76,7 @@ feat_params = {
     }),
 }
 opt_params = {
+    "test": ND({"optcls": "STLSQ"}),
     "test_low": ND({"optcls": "STLSQ", "threshold": 0.09}),
 }
 
