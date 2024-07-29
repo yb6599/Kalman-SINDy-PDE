@@ -128,7 +128,7 @@ diff_series: dict[str, SeriesDef] = {
     ),
     "auto-kalman": SeriesDef(
         "Auto Kalman",
-        diff_params["auto-ks"],
+        diff_params["autoks"],
         ["diff_params.alpha"],
         [(None,)],
     ),
