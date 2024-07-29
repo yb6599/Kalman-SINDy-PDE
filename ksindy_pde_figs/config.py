@@ -120,13 +120,7 @@ grid_decisions = {
     "plot2": ["plot", "plot"],
 }
 diff_series: dict[str, SeriesDef] = {
-    "kalman1": SeriesDef(
-        "Kalman",
-        diff_params["kalman"],
-        ["diff_params.alpha"],
-        [np.logspace(-6, 0, 3)],
-    ),
-    "kalman2": SeriesDef(
+    "kalman": SeriesDef(
         "Kalman",
         diff_params["kalman"],
         ["diff_params.alpha"],
@@ -134,41 +128,17 @@ diff_series: dict[str, SeriesDef] = {
     ),
     "auto-kalman": SeriesDef(
         "Auto Kalman",
-        diff_params["kalman"],
-        ["diff_params.alpha", "diff_params.meas_var"],
-        [(None,), (0.1, 0.5, 1, 2, 4, 8)],
-    ),
-    "auto-kalman2": SeriesDef(
-        "Auto Kalman",
-        diff_params["kalman"],
-        ["diff_params.alpha", "diff_params.meas_var"],
-        [(None,), (0.01, 0.25, 1, 4, 16, 64)],
-    ),
-    "auto-kalman3": SeriesDef(
-        "Auto Kalman",
-        diff_params["kalman"],
+        diff_params["auto-ks"],
         ["diff_params.alpha"],
         [(None,)],
     ),
-    "tv1": SeriesDef(
-        "Total Variation",
-        diff_params["tv"],
-        ["diff_params.alpha"],
-        [np.logspace(-6, 0, 3)],
-    ),
-    "tv2": SeriesDef(
+    "tv": SeriesDef(
         "Total Variation",
         diff_params["tv"],
         ["diff_params.alpha"],
         [np.logspace(-4, 0, 5)],
     ),
-    "sg1": SeriesDef(
-        "Savitsky-Golay",
-        diff_params["sfd-ps"],
-        ["diff_params.smoother_kws.window_length"],
-        [[5, 7, 15]],
-    ),
-    "sg2": SeriesDef(
+    "sg": SeriesDef(
         "Savitsky-Golay",
         diff_params["sfd-ps"],
         ["diff_params.smoother_kws.window_length"],
@@ -180,10 +150,10 @@ series_params: dict[str, SeriesList] = {
         "diff_params",
         "Differentiation Method",
         [
-            diff_series["auto-kalman3"],
-            diff_series["kalman2"],
-            diff_series["tv2"],
-            diff_series["sg2"],
+            diff_series["auto-kalman"],
+            diff_series["kalman"],
+            diff_series["tv"],
+            diff_series["sg"],
         ],
     ),
 }
