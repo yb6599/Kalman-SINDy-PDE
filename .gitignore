@@ -1,6 +1,7 @@
 .build
 .env
-.log
+*.log
+*.pyc
 .__pycache__/
 .vscode/
 trials/
