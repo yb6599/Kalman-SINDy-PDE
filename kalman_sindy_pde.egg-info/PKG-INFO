@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: kalman-sindy-pde
+Version: 0.0.0
+Author-email: Yash Bhangale <bhangaleys@gmail.com>
+License: MIT
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: matplotlib
+Requires-Dist: mitosis==0.5.2
+Requires-Dist: pysindy-experiments@ git+https://github.com/Jacob-Stevens-Haas/gen-experiments.git
