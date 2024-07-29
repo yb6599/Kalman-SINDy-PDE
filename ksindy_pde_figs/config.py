@@ -44,15 +44,17 @@ plot_prefs = {
     ),
 }
 sim_params = {
-    "pde-ic1": ND({"init_cond": np.exp(-((np.linspace(-8, 8, 256) + 2) ** 2) / 2)}),
+    "pde-ic1": ND({"init_cond": np.exp(-((np.linspace(-8, 8, 256) + 2) ** 2) / 2),
+                   "rel_noise": 0.1}),
     "pde-ic2": ND({
         "init_cond": (np.cos(np.linspace(0, 100, 1024))) * (
             1 + np.sin(np.linspace(0, 100, 1024) - 0.5)
-        )
+        ),
+        "rel_noise": 0.1
     }),
 }
 diff_params = {
-    "test_axis": ND({"diffcls": "FiniteDifference", "axis":-2}),
+    "test-axis": ND({"diffcls": "FiniteDifference", "axis":-2}),
     "sfd-ps": ND({"diffcls": "SmoothedFiniteDifference", "axis":-2}),
     "savgol": ND({"diffcls": "sindy", "kind": "savitzky_golay", "axis": -2, "left":0.1, "right":0.1, "order":3}),
     "tv": ND({"diffcls": "sindy", "kind": "trend_filtered", "order": 0, "axis":-2, "alpha": 1}),
@@ -78,6 +80,7 @@ feat_params = {
 opt_params = {
     "test": ND({"optcls": "STLSQ"}),
     "test_low": ND({"optcls": "STLSQ", "threshold": 0.09}),
+    "miosr": ND({"optcls": "MIOSR"}),
 }
 
 metrics = {
@@ -91,19 +94,13 @@ metrics = {
 other_params = {
     "test-pde1": ND({
         "sim_params": sim_params["pde-ic1"],
-        "diff_params": diff_params["test_axis"],
+        "diff_params": diff_params["test-axis"],
         "feat_params": feat_params["pde2"],
         "opt_params": opt_params["test_low"],
     }),
     "test-pde2": ND({
         "sim_params": sim_params["pde-ic2"],
-        "diff_params": diff_params["test_axis"],
-        "feat_params": feat_params["pde4"],
-        "opt_params": opt_params["test"],
-    }),
-    "test-pde-sg": ND({
-        "sim_params": sim_params["pde-ic2"],
-        "diff_params": diff_params["savgol"],
+        "diff_params": diff_params["test-axis"],
         "feat_params": feat_params["pde4"],
         "opt_params": opt_params["test"],
     }),
