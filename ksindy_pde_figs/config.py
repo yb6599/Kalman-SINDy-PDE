@@ -98,6 +98,12 @@ other_params = {
         "feat_params": feat_params["pde2"],
         "opt_params": opt_params["test_low"],
     }),
+    "miosr-pde1": ND({
+        "sim_params": sim_params["pde-ic1"],
+        "diff_params": diff_params["test-axis"],
+        "feat_params": feat_params["pde2"],
+        "opt_params": opt_params["miosr"],
+    }),
     "test-pde2": ND({
         "sim_params": sim_params["pde-ic2"],
         "diff_params": diff_params["test-axis"],
@@ -111,7 +117,7 @@ grid_params = {
 }
 grid_vals: dict[str, list[Iterable]] = {
     "duration-absnoise": [[0.5, 1, 2, 4, 8, 16], [0.1, 0.5, 1, 2, 4, 8]],
-    "rel-noise": [[0.5, 1, 2, 4, 8, 16], [0.0005, 0.001, 0.005, 0.01, 0.05]],
+    "rel-noise": [[8, 16, 32, 64, 128], [0.0005, 0.001, 0.005, 0.01, 0.05]],
 }
 grid_decisions = {
     "test": ["plot"],
