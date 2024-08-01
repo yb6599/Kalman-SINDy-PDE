@@ -79,7 +79,7 @@ feat_params = {
 }
 opt_params = {
     "test": ND({"optcls": "STLSQ"}),
-    "test_low": ND({"optcls": "STLSQ", "threshold": 0.09}),
+    "test_low": ND({"optcls": "STLSQ", "threshold": 0.05}),
     "miosr": ND({"optcls": "MIOSR"}),
 }
 
@@ -111,7 +111,7 @@ grid_params = {
 }
 grid_vals: dict[str, list[Iterable]] = {
     "duration-absnoise": [[0.5, 1, 2, 4, 8, 16], [0.1, 0.5, 1, 2, 4, 8]],
-    "rel-noise": [[0.5, 1, 2, 4, 8, 16], [0.05, 0.1, 0.15, 0.2, 0.25, 0.3]],
+    "rel-noise": [[0.5, 1, 2, 4, 8, 16], [0.0005, 0.001, 0.005, 0.01, 0.05]],
 }
 grid_decisions = {
     "test": ["plot"],
