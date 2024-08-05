@@ -1,3 +1,0 @@
-matplotlib
-mitosis==0.5.2
-pysindy-experiments@ git+https://github.com/Jacob-Stevens-Haas/gen-experiments.git

@@ -1,6 +1,9 @@
 commit-msg
 todo
-trails/
+trials/
+debug.py
+.vscode
+run_pde_exps.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
