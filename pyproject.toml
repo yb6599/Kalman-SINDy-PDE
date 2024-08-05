@@ -12,9 +12,14 @@ requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
     "matplotlib",
-    "mitosis==0.5.2",
+    "mitosis>=0.5.2",
     "pysindy-experiments @ git+https://github.com/Jacob-Stevens-Haas/gen-experiments.git"
 ]
+
+[tool.setuptools]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["trials*", "ksindy_pde_figs*"]
 
 [tool.isort]
 profile = "black"
