@@ -32,7 +32,7 @@ plot_prefs = {
             ["coeff_mse", "coeff_f1"],
             (..., (2, 3, 4)),
             (
-                {"diff_params.kind": "kalman", "diff_params.alpha": None},
+                {"diff_params.kind": "kalman", "diff_params.alpha": 'gcv'},
                 {
                     "diff_params.kind": "kalman",
                     "diff_params.alpha": lambda a: isinstance(a, float | int),
@@ -80,7 +80,7 @@ feat_params = {
 opt_params = {
     "test": ND({"optcls": "STLSQ"}),
     "test_low": ND({"optcls": "STLSQ", "threshold": 0.05}),
-    "miosr": ND({"optcls": "MIOSR"}),
+    "miosr": ND({"optcls": "MIOSR", "normalize_columns": True}),
 }
 
 metrics = {
@@ -113,7 +113,7 @@ other_params = {
 }
 grid_params = {
     "duration-absnoise": ["sim_params.t_end", "sim_params.noise_abs"],
-    "rel-noise": ["sim_params.t_end", "sim_params.noise_rel"],
+    "rel-noise": ["sim_params.t_end", "sim_params.rel_noise"],
 }
 grid_vals: dict[str, list[Iterable]] = {
     "duration-absnoise": [[0.5, 1, 2, 4, 8, 16], [0.1, 0.5, 1, 2, 4, 8]],
@@ -164,7 +164,7 @@ series_params: dict[str, SeriesList] = {
     ),
 }
 skinny_specs: dict[str, SkinnySpecs] = {
-    "duration-noise": (("sim_params.t_end", "sim_params.noise_rel"), ((1,), (-1,))),
+    "duration-noise": (("sim_params.t_end", "sim_params.rel_noise"), ((1,), (-1,))),
 }
 lookup_dict = {
     "plot_prefs": plot_prefs,
