@@ -39,7 +39,7 @@ grid_params = {
 }
 grid_vals: dict[str, list[Iterable]] = {
     "duration-absnoise": [[0.5, 1, 2, 4, 8, 16], [0.1, 0.5, 1, 2, 4, 8]],
-    "rel-noise": [[8, 16, 32, 64, 128], [0.0005, 0.001, 0.005, 0.01, 0.05]],
+    "rel-noise": [[8, 16, 32, 64, 128], [0.05, 0.1, 0.15, 0.2, 0.25]],
 }
 
 lookup_dict = {

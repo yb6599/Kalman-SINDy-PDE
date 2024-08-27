@@ -64,14 +64,14 @@ diff_params = {
 feat_params = {
     "pde2": ND({
         "featcls": "pde",
-        "function_library": ps.PolynomialLibrary(degree=2, include_bias=False),
+        "function_library": ps.PolynomialLibrary(degree=1, include_bias=False),
         "derivative_order": 2,
         "spatial_grid": np.linspace(-8, 8, 256),
         "include_interaction": True,
     }),
     "pde4": ND({
         "featcls": "pde",
-        "function_library": ps.PolynomialLibrary(degree=2, include_bias=False),
+        "function_library": ps.PolynomialLibrary(degree=1, include_bias=False),
         "derivative_order": 4,
         "spatial_grid": np.linspace(0, 100, 1024),
         "include_interaction": True,
@@ -80,7 +80,8 @@ feat_params = {
 opt_params = {
     "test": ND({"optcls": "STLSQ"}),
     "test_low": ND({"optcls": "STLSQ", "threshold": 0.05}),
-    "miosr": ND({"optcls": "MIOSR", "normalize_columns": True}),
+    "miosr-pde1": ND({"optcls": "MIOSR", "target_sparsity": 2, "normalize_columns": True}),
+    "miosr-pde2": ND({"optcls": "MIOSR", "target_sparsity": 4, "normalize_columns": True})
 }
 
 metrics = {
@@ -102,13 +103,19 @@ other_params = {
         "sim_params": sim_params["pde-ic1"],
         "diff_params": diff_params["test-axis"],
         "feat_params": feat_params["pde2"],
-        "opt_params": opt_params["miosr"],
+        "opt_params": opt_params["miosr-pde1"],
     }),
     "test-pde2": ND({
         "sim_params": sim_params["pde-ic2"],
         "diff_params": diff_params["test-axis"],
         "feat_params": feat_params["pde4"],
         "opt_params": opt_params["test"],
+    }),
+    "miosr-pde2": ND({
+        "sim_params": sim_params["pde-ic2"],
+        "diff_params": diff_params["test-axis"],
+        "feat_params": feat_params["pde4"],
+        "opt_params": opt_params["miosr-pde2"],
     }),
 }
 grid_params = {
@@ -117,7 +124,7 @@ grid_params = {
 }
 grid_vals: dict[str, list[Iterable]] = {
     "duration-absnoise": [[0.5, 1, 2, 4, 8, 16], [0.1, 0.5, 1, 2, 4, 8]],
-    "rel-noise": [[8, 16, 32, 64, 128], [0.0005, 0.001, 0.005, 0.01, 0.05]],
+    "rel-noise": [[8, 16, 32, 64, 128], [0.05, 0.1, 0.15, 0.2, 0.25]],
 }
 grid_decisions = {
     "test": ["plot"],
@@ -142,7 +149,7 @@ diff_series: dict[str, SeriesDef] = {
         "Total Variation",
         diff_params["tv"],
         ["diff_params.alpha"],
-        [np.logspace(-4, 0, 5)],
+        [np.logspace(2, 5, 5)],
     ),
     "sg": SeriesDef(
         "Savitsky-Golay",
