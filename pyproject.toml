@@ -25,5 +25,5 @@ include = ["trials*", "ksindy_pde_figs*"]
 profile = "black"
 
 [tool.mitosis.steps]
-data_gen = ["gen_experiments.pdes:data_prep", "ksindy_pde_figs.data_config:lookup_dict"]
+data_gen = ["gen_experiments.data:gen_pde_data", "ksindy_pde_figs.config:lookup_dict"]
 pde_grid = ["gen_experiments.gridsearch:run", "ksindy_pde_figs.config:lookup_dict"]
